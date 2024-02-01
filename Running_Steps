@@ -1,0 +1,17 @@
+javac -cp ${HADOOP_HOME}/share/hadoop/common/hadoop-common-3.2.1.jar:${HADOOP_HOME}/share/hadoop/mapreduce/hadoop-mapreduce-client-core-3.2.1.jar -d wordcount_classes *.java
+
+jar -cvf wordcount.jar -C wordcount_classes/ .
+
+hadoop jar /home/hadoop/wordcount.jar Driver /data_wordcount/wc.txt /output_dir_wc
+
+hadoop dfs -cat /output_dir_wc/*
+
+
+
+javac -cp ${HADOOP_HOME}/share/hadoop/common/hadoop-common-3.2.1.jar:${HADOOP_HOME}/share/hadoop/mapreduce/hadoop-mapreduce-client-core-3.2.1.jar -d evenodd_count_classes *.java
+
+jar -cvf evenoddcount.jar -C evenodd_count_classes/ .
+
+hadoop jar /home/hadoop/evenoddcount.jar Driver /data_wordcount/input.txt /output_dir_even_odd_count
+
+hadoop dfs -cat /output_dir_even_odd_count/*
